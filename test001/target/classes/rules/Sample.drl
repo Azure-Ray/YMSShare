@@ -1,0 +1,39 @@
+package com.sample
+ 
+import com.sample.DecisionTableTest.coffeeCost;
+
+rule "age"
+    when
+        m : coffeeCost(20<=age, age<=50 , price : cost , Age : age)
+    then
+        System.out.println(price);
+        m.setCost((Age-20)*2+20);
+        update( m );
+end
+
+rule "type"
+    when
+        m : coffeeCost(type == 1, price : cost)
+    then
+        System.out.println(price);
+        m.setCost(price+5);
+        update( m );
+end
+
+rule "card"
+    when
+        m : coffeeCost(isCard == 1, price : cost)
+    then
+        System.out.println(price);
+        m.setCost(price-5);
+        update( m );
+end
+
+rule "bir"
+    when
+        m : coffeeCost(isBir == 1, price : cost)
+    then
+        System.out.println(price);
+        m.setCost(price-5);
+        update( m );
+end
